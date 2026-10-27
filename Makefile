@@ -12,18 +12,15 @@ SELINUX1 := :z
 SELINUX2 := ,z
 endif
 
-.PHONY: all left image flash-left flash-right clean_firmware clean_image clean
+.PHONY: all left image build flash-left flash-right clean_firmware clean_image clean
 
-all: image
-	$(MAKE) build BUILD_RIGHT=true
-
-left: image
-	$(MAKE) build BUILD_RIGHT=false
+all: BUILD_RIGHT := true
+left: BUILD_RIGHT := false
+all left: image build
 
 image:
 	$(DOCKER) build --tag zmk --file Dockerfile .
 
-.PHONY: build
 build:
 	bin/get_version_local.sh clique > /dev/null
 	$(DOCKER) run --rm $(DOCKER_TTY) --name zmk \
