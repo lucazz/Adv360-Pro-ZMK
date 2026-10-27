@@ -74,7 +74,7 @@ LEFT HALF                                                              RIGHT HAL
 
 ## Layer 3: Mod / System (momentary via top-right key)
 
-Bluetooth profiles, bootloader, RGB/backlight controls, version macro.
+Bluetooth profiles, bootloader, ZMK Studio unlock, battery status, RGB/backlight controls, version macro.
 
 ```
 LEFT HALF                                                              RIGHT HALF
@@ -83,7 +83,7 @@ LEFT HALF                                                              RIGHT HAL
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
 |        |      |      |      |      |      | BOOT |                  | BOOT |      |      |      |      |      |        |
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
-|        |      |      |      |      |      |      |      |BT CLR|    |      |      | RGB5 |      |      |      |        |
+| STUDIO |      |      |      |      |      |      |      |BT CLR|    |      |      | BAT  |      |      |      |        |
 |--------+------+------+------+------+------+------'                  `------+------+------+------+------+------+--------|
 |        |      |      |      | VER  |      |                                |      |      |      |      |      |        |
 `--------+------+------+------+------+------'                                `------+------+------+------+------+--------'
@@ -128,7 +128,8 @@ LEFT HALF                                                              RIGHT HAL
 | `BL TOG` | Toggle backlight |
 | `BL UP/DN` | Backlight brightness |
 | `RGB TOG` | Toggle RGB underglow |
-| `RGB5` | RGB effect command 5 |
+| `STUDIO` | Unlock ZMK Studio |
+| `BAT` | Report battery status |
 | `VER` | Version macro |
 | (blank) | No binding (none) |
 | (empty in L2) | Transparent to layer below |
