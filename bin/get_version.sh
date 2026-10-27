@@ -4,6 +4,7 @@
 date=$(date -u +"%Y%m%d")
 branch=${1:-$(git rev-parse --abbrev-ref HEAD | cut -c1-4)}
 commit=${2:-$(git rev-parse --short HEAD)}
+clique=${3:-"."}
 
 uppercase_char() {
     local char=$1
@@ -48,8 +49,16 @@ for ((i = 0; i < ${#commit}; i++)); do
     formatted_commit+=$(transform_char "${commit:$i:1}")
 done
 
+formatted_commit+="<&kp MINUS>, "
+
+# Iterate over the clique string and format characters
+formatted_clique=""
+for ((i = 0; i < ${#clique}; i++)); do
+    formatted_clique+=$(transform_char "${clique:$i:1}")
+done
+
 # Combine the formatted string, add trailing carriage return
-formatted_result="$formatted_date$formatted_branch$formatted_commit"
+formatted_result="$formatted_date$formatted_branch$formatted_commit$formatted_clique"
 formatted_result+="<&kp RET>"
 
 echo $formatted_result
@@ -58,7 +67,6 @@ echo $formatted_result
 echo '#define VERSION_MACRO' > "config/version.dtsi"
 echo 'macro_ver: macro_ver {' >> "config/version.dtsi"
 echo 'compatible = "zmk,behavior-macro";' >> "config/version.dtsi"
-echo 'label = "macro_ver";' >> "config/version.dtsi"
 echo '#binding-cells = <0>;' >> "config/version.dtsi"
 echo "bindings = $formatted_result;" >> "config/version.dtsi"
 echo '};' >> "config/version.dtsi"
