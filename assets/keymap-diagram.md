@@ -17,14 +17,16 @@ LEFT HALF                                                              RIGHT HAL
 `--------+------+------+------+------+------'                                `------+------+------+------+------+--------'
  | MO(2) |  `   |      | Left |Right |                                              | Down |  Up  |      |      | MO(2) |
  `-------+------+------+------+------'                                               `------+------+------+------+-------'
-                                          ,-----------.    ,-----------.
-                                          | GUI  | Alt |    | RAlt | GUI  |
-                                     ,----|------|------|    |------+------+----.
-                                     |    |      | Ctrl |    | RCtrl|      |     |
-                                     | Bksp| Del  |------|    |------| Enter|Space|
-                                     |    |      | Home |    | End  |      |     |
-                                     `-----------+------'    `------+-----------'
+                                            ,------+------.    ,------+------.
+                                            | Alt  | Ctrl |    | RCtrl| RAlt |
+                                     ,------+------+------|    |------+------+------.
+                                     |      |      | Cmd  |    | Cmd  |      |      |
+                                     | Bksp | Del  |------|    |------| Enter| Space|
+                                     |      |      | Hyper|    | Hyper|      |      |
+                                     `------+------+------'    `------+------+------'
 ```
+
+Thumbs: Cmd sits on the small key the thumb rests on. Hyper (`Ctrl+Opt+Cmd`) drives OmniWM; see `omniwm/README.md` in the dotfiles repo. Ctrl and Alt are on the upper pair for occasional use.
 
 ## Layer 1: Keypad (toggle)
 
@@ -100,36 +102,36 @@ LEFT HALF                                                              RIGHT HAL
 
 ## Custom Behaviors
 
-| Name | Trigger | Action |
-|------|---------|--------|
-| Homerow Mods | hold-tap (200ms, tap-preferred) | Hold for modifier, tap for key |
-| Version | `Mod+V` (layer 3) | Types `YYYYMMDD-XXXX-YYYYYY` build info |
+| Name         | Trigger                         | Action                                  |
+| ------------ | ------------------------------- | --------------------------------------- |
+| Homerow Mods | hold-tap (200ms, tap-preferred) | Hold for modifier, tap for key          |
+| Version      | `Mod+V` (layer 3)               | Types `YYYYMMDD-XXXX-YYYYYY` build info |
 
 ## Custom Macros (available in keymap)
 
-| Macro | Output | Description |
-|-------|--------|-------------|
-| `macro_quotes` | `''←` | Single quotes, cursor between |
-| `macro_dquotes` | `""←` | Double quotes, cursor between |
-| `macro_braces` | `{}←` | Braces, cursor between |
-| `macro_parens` | `()←` | Parentheses, cursor between |
-| `macro_brackets` | `[]←` | Brackets, cursor between |
-| `macro_kinesis` | `Kinesis` | Types "Kinesis" |
+| Macro            | Output    | Description                   |
+| ---------------- | --------- | ----------------------------- |
+| `macro_quotes`   | `''←`     | Single quotes, cursor between |
+| `macro_dquotes`  | `""←`     | Double quotes, cursor between |
+| `macro_braces`   | `{}←`     | Braces, cursor between        |
+| `macro_parens`   | `()←`     | Parentheses, cursor between   |
+| `macro_brackets` | `[]←`     | Brackets, cursor between      |
+| `macro_kinesis`  | `Kinesis` | Types "Kinesis"               |
 
 ## Legend
 
-| Symbol | Meaning |
-|--------|---------|
-| `TG(n)` | Toggle layer n |
-| `MO(n)` | Momentary layer n (while held) |
-| `BOOT` | Enter bootloader mode |
-| `BT n` | Select Bluetooth profile n |
-| `BT CLR` | Clear Bluetooth pairing |
-| `BL TOG` | Toggle backlight |
-| `BL UP/DN` | Backlight brightness |
-| `RGB TOG` | Toggle RGB underglow |
-| `STUDIO` | Unlock ZMK Studio |
-| `BAT` | Report battery status |
-| `VER` | Version macro |
-| (blank) | No binding (none) |
-| (empty in L2) | Transparent to layer below |
+| Symbol        | Meaning                        |
+| ------------- | ------------------------------ |
+| `TG(n)`       | Toggle layer n                 |
+| `MO(n)`       | Momentary layer n (while held) |
+| `BOOT`        | Enter bootloader mode          |
+| `BT n`        | Select Bluetooth profile n     |
+| `BT CLR`      | Clear Bluetooth pairing        |
+| `BL TOG`      | Toggle backlight               |
+| `BL UP/DN`    | Backlight brightness           |
+| `RGB TOG`     | Toggle RGB underglow           |
+| `STUDIO`      | Unlock ZMK Studio              |
+| `BAT`         | Report battery status          |
+| `VER`         | Version macro                  |
+| (blank)       | No binding (none)              |
+| (empty in L2) | Transparent to layer below     |
