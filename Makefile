@@ -38,7 +38,7 @@ flash-left flash-right:
 	@uf2=$$(ls -t firmware/*-$(SIDE)-clique.uf2 2>/dev/null | head -n 1); \
 	test -n "$$uf2" || { echo "no $(SIDE) firmware in firmware/; run make first"; exit 1; }; \
 	echo "flashing $$uf2 to $(BOOTLOADER_VOLUME)"; \
-	cp "$$uf2" "$(BOOTLOADER_VOLUME)/"
+	cp -X "$$uf2" "$(BOOTLOADER_VOLUME)/"
 
 clean_firmware:
 	rm -f firmware/*.uf2
