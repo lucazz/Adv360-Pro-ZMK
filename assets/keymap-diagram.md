@@ -27,7 +27,7 @@ LEFT HALF                                                              RIGHT HAL
                                      `------+------+------'    `------+------+------'
 ```
 
-Thumbs: the small key the thumb rests on is Cmd when tapped or chorded with another key, and Hyper (`Ctrl+Opt+Cmd`) when held alone for 250 ms. Hyper drives OmniWM; see `omniwm/README.md` in the dotfiles repo. A slow Cmd chord lands as Hyper, which matters for chords OmniWM also binds. Ctrl and Alt are on the upper pair for occasional use.
+Thumbs: the small key the thumb rests on is Cmd when tapped or chorded with another key, and Hyper (`Ctrl+Opt+Cmd`) when held alone for 300 ms. Hyper drives OmniWM; see `omniwm/README.md` in the dotfiles repo. A slow Cmd chord lands as Hyper, which matters for chords OmniWM also binds. Ctrl and Alt are on the upper pair for occasional use.
 
 ## Layer 1: Keypad (toggle)
 
@@ -106,7 +106,7 @@ LEFT HALF                                                              RIGHT HAL
 | Name         | Trigger                         | Action                                            |
 | ------------ | ------------------------------- | ------------------------------------------------- |
 | Homerow Mods | hold-tap (200ms, tap-preferred) | Hold for modifier, tap for key                    |
-| Cmd/Hyper    | hold-tap (250ms, tap-preferred) | Cmd when tapped or chorded, Hyper when held alone |
+| Cmd/Hyper    | hold-tap (300ms, tap-preferred) | Cmd when tapped or chorded, Hyper when held alone |
 | Version      | `Mod+V` (layer 3)               | Types `YYYYMMDD-XXXX-YYYYYY` build info           |
 
 ## Custom Macros (available in keymap)
