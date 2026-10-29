@@ -30,7 +30,7 @@
           compatible = "zmk,behavior-hold-tap";
           label = "CMD_HYPER";
           #binding-cells = <2>;
-          tapping-term-ms = <250>;
+          tapping-term-ms = <300>;
           quick_tap_ms = <175>;
           flavor = "tap-preferred";
           bindings = <&kp>, <&kp>;
