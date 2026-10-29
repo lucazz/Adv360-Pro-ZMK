@@ -20,13 +20,14 @@ LEFT HALF                                                              RIGHT HAL
                                             ,------+------.    ,------+------.
                                             | Alt  | Ctrl |    | RCtrl| RAlt |
                                      ,------+------+------|    |------+------+------.
-                                     |      |      | Cmd  |    | Cmd  |      |      |
-                                     | Bksp | Del  |------|    |------| Enter| Space|
-                                     |      |      | Hyper|    | Hyper|      |      |
+                                     |      |      | Cmd/ |    | Cmd/ |      |      |
+                                     | Bksp | Del  | Hyper|    | Hyper| Enter| Space|
+                                     |      |      |------|    |------|      |      |
+                                     |      |      | Home |    | End  |      |      |
                                      `------+------+------'    `------+------+------'
 ```
 
-Thumbs: Cmd sits on the small key the thumb rests on. Hyper (`Ctrl+Opt+Cmd`) drives OmniWM; see `omniwm/README.md` in the dotfiles repo. Ctrl and Alt are on the upper pair for occasional use.
+Thumbs: the small key the thumb rests on is Cmd when tapped or chorded with another key, and Hyper (`Ctrl+Opt+Cmd`) when held alone for 250 ms. Hyper drives OmniWM; see `omniwm/README.md` in the dotfiles repo. A slow Cmd chord lands as Hyper, which matters for chords OmniWM also binds. Ctrl and Alt are on the upper pair for occasional use.
 
 ## Layer 1: Keypad (toggle)
 
@@ -102,10 +103,11 @@ LEFT HALF                                                              RIGHT HAL
 
 ## Custom Behaviors
 
-| Name         | Trigger                         | Action                                  |
-| ------------ | ------------------------------- | --------------------------------------- |
-| Homerow Mods | hold-tap (200ms, tap-preferred) | Hold for modifier, tap for key          |
-| Version      | `Mod+V` (layer 3)               | Types `YYYYMMDD-XXXX-YYYYYY` build info |
+| Name         | Trigger                         | Action                                            |
+| ------------ | ------------------------------- | ------------------------------------------------- |
+| Homerow Mods | hold-tap (200ms, tap-preferred) | Hold for modifier, tap for key                    |
+| Cmd/Hyper    | hold-tap (250ms, tap-preferred) | Cmd when tapped or chorded, Hyper when held alone |
+| Version      | `Mod+V` (layer 3)               | Types `YYYYMMDD-XXXX-YYYYYY` build info           |
 
 ## Custom Macros (available in keymap)
 
