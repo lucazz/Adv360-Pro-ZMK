@@ -7,7 +7,7 @@ Custom keymap with homerow mods (hold-tap, 200ms, tap-preferred) and bracket-pai
 ```
 LEFT HALF                                                              RIGHT HALF
 ,--------------------------------------------------.                  ,--------------------------------------------------.
-|   =    |  1   |  2   |  3   |  4   |  5   |      |                  | MO(3)|  6   |  7   |  8   |  9   |  0   |   -    |
+|   =    |  1   |  2   |  3   |  4   |  5   | F18  |                  | MO(3)|  6   |  7   |  8   |  9   |  0   |   -    |
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
 |  Tab   |  Q   |  W   |  E   |  R   |  T   |      |                  |  [   |  Y   |  U   |  I   |  O   |  P   |   \    |
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
@@ -36,7 +36,7 @@ Right side converts to numpad layout. Left side unchanged.
 ```
 LEFT HALF                                                              RIGHT HALF
 ,--------------------------------------------------.                  ,--------------------------------------------------.
-|   =    |  1   |  2   |  3   |  4   |  5   |      |                  | MO(3)|  6   | NmLk |  =   |  /   |  *   |   -    |
+|   =    |  1   |  2   |  3   |  4   |  5   | F18  |                  | MO(3)|  6   | NmLk |  =   |  /   |  *   |   -    |
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
 |  Tab   |  Q   |  W   |  E   |  R   |  T   |      |                  |      |  Y   | KP 7 | KP 8 | KP 9 | KP - |   \    |
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
@@ -77,7 +77,7 @@ LEFT HALF                                                              RIGHT HAL
 
 ## Layer 3: Mod / System (momentary via top-right key)
 
-Bluetooth profiles, bootloader, ZMK Studio unlock, battery status, RGB/backlight controls, version macro.
+Bluetooth profiles, bootloader, battery status, RGB/backlight controls, version macro.
 
 ```
 LEFT HALF                                                              RIGHT HALF
@@ -86,7 +86,7 @@ LEFT HALF                                                              RIGHT HAL
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
 |        |      |      |      |      |      | BOOT |                  | BOOT |      |      |      |      |      |        |
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
-| STUDIO |      |      |      |      |      |      |      |BT CLR|    |      |      | BAT  |      |      |      |        |
+|        |      |      |      |      |      |      |      |BT CLR|    |      |      | BAT  |      |      |      |        |
 |--------+------+------+------+------+------+------'                  `------+------+------+------+------+------+--------|
 |        |      |      |      | VER  |      |                                |      |      |      |      |      |        |
 `--------+------+------+------+------+------'                                `------+------+------+------+------+--------'
@@ -132,7 +132,6 @@ LEFT HALF                                                              RIGHT HAL
 | `BL TOG`      | Toggle backlight               |
 | `BL UP/DN`    | Backlight brightness           |
 | `RGB TOG`     | Toggle RGB underglow           |
-| `STUDIO`      | Unlock ZMK Studio              |
 | `BAT`         | Report battery status          |
 | `VER`         | Version macro                  |
 | (blank)       | No binding (none)              |
