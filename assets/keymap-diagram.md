@@ -1,6 +1,6 @@
 # Advantage 360 Pro Keymap Diagram
 
-Custom keymap with homerow mods (hold-tap, 200ms, tap-preferred) and bracket-pair macros.
+Custom keymap with plain Command thumb keys and a tap-toggle HYPER shortcut layer.
 
 ## Layer 0: Default (QWERTY)
 
@@ -20,18 +20,18 @@ LEFT HALF                                                              RIGHT HAL
                                             ,------+------.    ,------+------.
                                             | Alt  | Ctrl |    | RCtrl| RAlt |
                                      ,------+------+------|    |------+------+------.
-                                     |      |      | Cmd/ |    | Cmd/ |      |      |
-                                     | Bksp | Del  | Hyper|    | Hyper| Enter| Space|
+                                     |      |      | Cmd  |    | Cmd  |      |      |
+                                     | Bksp | Del  |      |    |      | Enter| Space|
                                      |      |      |------|    |------|      |      |
-                                     |      |      | Home |    | End  |      |      |
+                                     |      |      |HYPER |    |HYPER |      |      |
                                      `------+------+------'    `------+------+------'
 ```
 
-Thumbs: the small key the thumb rests on is Cmd when tapped or chorded with another key, and Hyper (`Ctrl+Opt+Cmd`) when held alone for 300 ms. Hyper drives OmniWM; see `omniwm/README.md` in the dotfiles repo. A slow Cmd chord lands as Hyper, which matters for chords OmniWM also binds. Ctrl and Alt are on the upper pair for occasional use.
+Thumbs: both Cmd keys send ordinary Command immediately. Tap either former Home/End key to toggle HYPER on; tap either again to return to the previous layer. Esc from HYPER switches directly to Base. With HYPER off, hold Fn before pressing those thumb keys to send Home or End. Ctrl and Alt are on the upper pair for occasional use.
 
 ## Layer 1: Keypad (toggle)
 
-Right side converts to numpad layout. Left side unchanged.
+Right side converts to numpad layout. The Cmd and HYPER thumb keys retain their base-layer bindings. Toggling HYPER off returns to the keypad layer when it was already active.
 
 ```
 LEFT HALF                                                              RIGHT HALF
@@ -49,15 +49,15 @@ LEFT HALF                                                              RIGHT HAL
                                           ,-----------.    ,-----------.
                                           | Ctrl | Alt |    | GUI  | RCtrl|
                                      ,----|------|------|    |------+------+----.
-                                     |    |      | Home |    | PgUp |      |     |
+                                     |    |      | Cmd  |    | Cmd  |      |     |
                                      | Bksp| Del  |------|    |------| Enter| KP 0|
-                                     |    |      | End  |    | PgDn |      |     |
+                                     |    |      |HYPER |    |HYPER |      |     |
                                      `-----------+------'    `------+-----------'
 ```
 
 ## Layer 2: Function Keys (momentary via bottom corners)
 
-Top row becomes F1-F12. Everything else transparent to layer below.
+Top row becomes F1-F12. The HYPER thumb keys send Home (left) and End (right). Other bindings pass through to the layer below, except the unused inner keys. Toggle HYPER off before using Fn.
 
 ```
 LEFT HALF                                                              RIGHT HALF
@@ -72,12 +72,12 @@ LEFT HALF                                                              RIGHT HAL
 `--------+------+------+------+------+------'                                `------+------+------+------+------+--------'
  |       |      |      |      |      |                                              |      |      |      |      |       |
  `-------+------+------+------+------'                                               `------+------+------+------+-------'
-                          (all other keys transparent to active layer below)
+                          (thumb HYPER keys: Home on left, End on right)
 ```
 
 ## Layer 3: Mod / System (momentary via top-right key)
 
-Bluetooth profiles, bootloader, battery status, RGB/backlight controls, version macro.
+Bluetooth profiles, bootloader, and version macro. Toggle HYPER off before using Mod. Prospector displays battery and layer status; keyboard lighting shortcuts are unassigned.
 
 ```
 LEFT HALF                                                              RIGHT HALF
@@ -86,28 +86,65 @@ LEFT HALF                                                              RIGHT HAL
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
 |        |      |      |      |      |      | BOOT |                  | BOOT |      |      |      |      |      |        |
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
-|        |      |      |      |      |      |      |      |BT CLR|    |      |      | BAT  |      |      |      |        |
+|        |      |      |      |      |      |      |      |BT CLR|    |      |      |      |      |      |      |        |
 |--------+------+------+------+------+------+------'                  `------+------+------+------+------+------+--------|
 |        |      |      |      | VER  |      |                                |      |      |      |      |      |        |
 `--------+------+------+------+------+------'                                `------+------+------+------+------+--------'
- |       |      |      |      |      |                                              |BL UP |BL DN |      |      |       |
+ |       |      |      |      |      |                                              |      |      |      |      |       |
  `-------+------+------+------+------'                                               `------+------+------+------+-------'
                                           ,-----------.    ,-----------.
                                           |      |      |    |      |      |
                                      ,----|------|------|    |------+------+----.
                                      |    |      |      |    |      |      |     |
-                                     |    |      |------|    |------| BL   | RGB |
-                                     |    |      |      |    |      | TOG  | TOG |
+                                     |    |      |------|    |------|      |     |
+                                     |    |      |      |    |      |      |     |
                                      `-----------+------'    `------+-----------'
 ```
 
+## Layer 4: HYPER (toggle via either former Home/End thumb key)
+
+Tap either HYPER thumb key to activate the layer. It stays on after release and across shortcuts; tap either again to return to the previous layer. Esc switches directly to Base, clearing other active layers, without sending Escape to the Mac. Another press sends ordinary Escape. Prospector shows `HYPER` while the layer is active.
+
+Every normal key except Esc sends its base-layout key with `Ctrl+Opt+Cmd`, including letters, numbers, punctuation, arrows, Tab, F18, Backspace, Delete, Enter, and Space. Physical Shift adds Shift. Modifier and layer-control keys retain their control roles, and unused positions remain unassigned.
+
+### OmniWM
+
+| Keys while HYPER is on    | Action                                        |
+| ------------------------- | --------------------------------------------- |
+| `H/J/K/L`                 | Focus the window left/down/up/right           |
+| `Shift+H/J/K/L`           | Move the focused tile left/down/up/right      |
+| `1` through `9`           | Switch to workspace 1 through 9               |
+| `Shift+Q/W/E/R/T/Y/U/I/O` | Move the window to workspace 1 through 9      |
+| `-` / `=`                 | Shrink / grow the focused window              |
+| `Shift+F`                 | Toggle OmniWM fullscreen                      |
+| `/`                       | Toggle the Dwindle split direction            |
+| `,`                       | Toggle the workspace between Dwindle and Niri |
+
+Shift is never added automatically. See `omniwm/settings.toml` in the dotfiles repo for the receiving shortcuts.
+
+### OpenCode through Rex
+
+Rex translates these Hyper chords into OpenCode's configured terminal shortcuts when its pane has focus:
+
+| Keys while HYPER is on | Action                                              |
+| ---------------------- | --------------------------------------------------- |
+| `X`                    | Send the OpenCode leader (`Option+X`)               |
+| `P`                    | Open command palette                                |
+| `O`                    | Open recent sessions and projects                   |
+| `T`                    | Cycle model variants                                |
+| `Tab` / `Shift+Tab`    | Next / previous session tab                         |
+| `R` / `D` / `F`        | Rename / delete / pin a session in the session list |
+| `M`                    | Create a worktree in the move-session dialog        |
+
+For leader sequences, press `X`, exit HYPER with Esc or a thumb key, then press the ordinary suffix. For example, `X`, Esc, `M` opens the model picker. That first Esc only changes the keyboard layer and does not cancel OpenCode's leader. Test these shortcuts at the normal prompt, where no pending question dialog is taking keyboard focus. The keyboard does not detect the focused app; the layer sends the same chords everywhere. See `rex/init.lua` and `opencode/config/cli.json.tera` in the dotfiles repo for the receiving bindings.
+
 ## Custom Behaviors
 
-| Name         | Trigger                         | Action                                            |
-| ------------ | ------------------------------- | ------------------------------------------------- |
-| Homerow Mods | hold-tap (200ms, tap-preferred) | Hold for modifier, tap for key                    |
-| Cmd/Hyper    | hold-tap (300ms, tap-preferred) | Cmd when tapped or chorded, Hyper when held alone |
-| Version      | `Mod+V` (layer 3)               | Types `YYYYMMDD-XXXX-YYYYYY` build info           |
+| Name         | Trigger                         | Action                                             |
+| ------------ | ------------------------------- | -------------------------------------------------- |
+| Homerow Mods | hold-tap (200ms, tap-preferred) | Hold for modifier, tap for key                     |
+| HYPER layer  | Tap either former Home/End key  | Toggle Hyper chords; Esc switches directly to Base |
+| Version      | `Mod+V` (layer 3)               | Types `YYYYMMDD-XXXX-YYYYYY` build info            |
 
 ## Custom Macros (available in keymap)
 
@@ -129,10 +166,6 @@ LEFT HALF                                                              RIGHT HAL
 | `BOOT`        | Enter bootloader mode          |
 | `BT n`        | Select Bluetooth profile n     |
 | `BT CLR`      | Clear Bluetooth pairing        |
-| `BL TOG`      | Toggle backlight               |
-| `BL UP/DN`    | Backlight brightness           |
-| `RGB TOG`     | Toggle RGB underglow           |
-| `BAT`         | Report battery status          |
 | `VER`         | Version macro                  |
 | (blank)       | No binding (none)              |
 | (empty in L2) | Transparent to layer below     |

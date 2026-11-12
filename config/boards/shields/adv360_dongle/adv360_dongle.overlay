@@ -1,0 +1,20 @@
+#include "../../arm/adv360/adv360-layouts.dtsi"
+#include "../../arm/adv360/adv360-transform.dtsi"
+
+&physical_layout0 {
+    transform = <&matrix_transform0>;
+};
+
+/ {
+    chosen {
+        zmk,kscan = &mock_kscan;
+        zmk,physical-layout = &physical_layout0;
+    };
+
+    mock_kscan: mock_kscan {
+        compatible = "zmk,kscan-mock";
+        columns = <0>;
+        rows = <0>;
+        events = <0>;
+    };
+};
