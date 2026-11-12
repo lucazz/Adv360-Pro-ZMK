@@ -36,15 +36,15 @@ Output lands in `firmware/` as `<timestamp>-<commit>-{left,right,dongle}-prospec
 
 Each half mounts as `ADV360PRO` in bootloader mode. Double-pressing Prospector's reset button mounts it as `XIAO-SENSE`. The `flash-*` targets copy the newest matching image from `firmware/`. Override `BOOTLOADER_VOLUME` or `PROSPECTOR_VOLUME` if a drive has a different mount path.
 
-Changing the central requires clearing old Bluetooth bonds on all three devices. Build the normal images and `make reset-dongle` first.
+Changing the central requires clearing old Bluetooth bonds on all three devices. Build the normal images and `make reset-dongle` first. One USB port is enough: Prospector can stay unplugged while flashing the halves.
 
 1. Unplug both keyboard halves and switch them off.
 2. Double-press Prospector's reset button. Run `make flash-reset-dongle` and let the reset firmware boot.
-3. Double-press reset again, then run `make flash-dongle`. Leave Prospector connected to the Mac.
-4. Connect the left half over USB and use its physical reset button to enter bootloader mode. Copy the repository's `settings-reset.uf2` to `ADV360PRO` and let it boot.
-5. Put the left half back in bootloader mode and run `make flash-left`. Switch it on and wait for Prospector to show its connection.
-6. Connect the right half over USB. Repeat the reset-image procedure, then enter bootloader mode again and run `make flash-right`. Switch it on.
-7. Unplug the halves' USB cables and leave both power switches on.
+3. Double-press reset again, then run `make flash-dongle`. Unplug Prospector if you need its USB port for the halves.
+4. Connect the left half over USB and use its physical reset button to enter bootloader mode. Use Finder to copy the repository's `settings-reset.uf2` to `ADV360PRO` and let it boot.
+5. Put the left half back in bootloader mode and run `make flash-left`. Switch it off and unplug it after flashing.
+6. Connect the right half over USB. Repeat the reset-image procedure, then enter bootloader mode again and run `make flash-right`. Switch it off and unplug it after flashing.
+7. Reconnect Prospector to the Mac. Switch the left half on and wait for its connection indicator, then switch the right half on. Both halves run wirelessly on battery.
 
 Pair the left half first: the Prospector battery widgets follow pairing order. The repository's `settings-reset.uf2` is for the Advantage 360 halves; the XIAO uses the separately built `-dongle-reset.uf2` image.
 
