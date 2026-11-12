@@ -5,7 +5,7 @@
 
 // Match OmniWM's hyperKeyModifiers, leaving Shift available for move variants.
 #define HYPER(key) LC(LA(LG(key)))
-#define WM 4
+#define HYPER_LAYER 4
 
 #if defined(CONFIG_SHIELD_ADV360_DONGLE)
 // Kinesis lighting behaviors require hardware that is only on the keyboard halves.
@@ -40,7 +40,7 @@
         &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &kp LBKT &kp Y  &kp U    &kp I     &kp O    &kp P    &kp BSLH
         &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LALT  &kp LCTRL &kp RCTRL &kp RALT           &kp RBKT &kp H  &kp J    &kp K     &kp L    &kp SEMI &kp SQT
         &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp LGUI &kp RGUI                              &kp N  &kp M    &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-        &mo 2     &kp GRAVE &none    &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &mo WM   &mo WM    &kp ENTER &kp SPACE                &kp DOWN &kp UP    &none    &none    &mo 2
+        &mo 2     &kp GRAVE &none    &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &tog HYPER_LAYER &tog HYPER_LAYER &kp ENTER &kp SPACE                &kp DOWN &kp UP    &none    &none    &mo 2
       >;
     };
     keypad {
@@ -73,14 +73,14 @@
         &none &none        &none        &none        &none                                       &none &none &none &none      &none      &none                                              &none        &none        &none &none &none
       >;
     };
-    wm {
-      display-name = "WM";
+    hyper {
+      display-name = "HYPER";
       bindings = <
-        &kp HYPER(EQUAL) &kp HYPER(N1)    &kp HYPER(N2)    &kp HYPER(N3)    &kp HYPER(N4)    &kp HYPER(N5)    &trans                                           &trans &kp HYPER(N6)    &kp HYPER(N7)    &kp HYPER(N8)    &kp HYPER(N9)    &none &kp HYPER(MINUS)
-        &none            &kp HYPER(LS(Q)) &kp HYPER(LS(W)) &kp HYPER(LS(E)) &kp HYPER(LS(R)) &kp HYPER(LS(T)) &none                                            &none  &kp HYPER(LS(Y)) &kp HYPER(LS(U)) &kp HYPER(LS(I)) &kp HYPER(LS(O)) &none &none
-        &none            &none            &none            &none            &kp HYPER(LS(F)) &none            &none        &trans &trans &trans &trans        &none  &kp HYPER(H)     &kp HYPER(J)     &kp HYPER(K)     &kp HYPER(L)     &none &none
-        &trans           &none            &none            &none            &none            &none                                     &trans &trans                            &none            &none            &kp HYPER(COMMA) &none            &kp HYPER(FSLH) &trans
-        &trans           &none            &none            &none            &none                                &none &none &trans &trans &none &none                         &none            &none            &none            &none            &trans
+        &kp HYPER(EQUAL) &kp HYPER(N1) &kp HYPER(N2) &kp HYPER(N3) &kp HYPER(N4) &kp HYPER(N5) &kp HYPER(F18)                                      &trans &kp HYPER(N6) &kp HYPER(N7) &kp HYPER(N8) &kp HYPER(N9) &kp HYPER(N0) &kp HYPER(MINUS)
+        &kp HYPER(TAB)   &kp HYPER(Q)  &kp HYPER(W)  &kp HYPER(E)  &kp HYPER(R)  &kp HYPER(T)  &none                                               &kp HYPER(LBKT) &kp HYPER(Y) &kp HYPER(U) &kp HYPER(I) &kp HYPER(O) &kp HYPER(P) &kp HYPER(BSLH)
+        &kp HYPER(ESC)   &kp HYPER(A)  &kp HYPER(S)  &kp HYPER(D)  &kp HYPER(F)  &kp HYPER(G)  &none       &trans &trans &trans &trans             &kp HYPER(RBKT) &kp HYPER(H) &kp HYPER(J) &kp HYPER(K) &kp HYPER(L) &kp HYPER(SEMI) &kp HYPER(SQT)
+        &trans           &kp HYPER(Z)  &kp HYPER(X)  &kp HYPER(C)  &kp HYPER(V)  &kp HYPER(B)                        &trans &trans                      &kp HYPER(N) &kp HYPER(M) &kp HYPER(COMMA) &kp HYPER(DOT) &kp HYPER(FSLH) &trans
+        &trans           &kp HYPER(GRAVE) &none      &kp HYPER(LEFT) &kp HYPER(RIGHT)          &kp HYPER(BSPC) &kp HYPER(DEL) &tog HYPER_LAYER &tog HYPER_LAYER &kp HYPER(ENTER) &kp HYPER(SPACE) &kp HYPER(DOWN) &kp HYPER(UP) &none &none &trans
       >;
     };
 

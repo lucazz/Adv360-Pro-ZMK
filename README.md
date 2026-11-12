@@ -12,7 +12,11 @@ The receiver uses a Seeed XIAO nRF52840 Sense and the Zephyr 3.5-compatible [Pro
 
 The keymap lives in `config/adv360.keymap`; edit it by hand. `assets/keymap-diagram.md` is the human-readable version and `assets/key-positions.md` has the matrix positions needed for `hold-trigger-key-positions` and combos.
 
-Both Cmd thumb keys send ordinary Command. Hold either former Home/End thumb key for the `WM` layer. Hold Fn first, then press those thumb keys for Home or End. The WM layer sends the existing OmniWM shortcuts, including Shift for workspace moves and fullscreen.
+Both Cmd thumb keys send ordinary Command. Tap either former Home/End thumb key to toggle the `HYPER` layer on. It stays active after release and across shortcuts; tap either thumb key again to return to the previous layer. Prospector shows `HYPER` while it is active.
+
+In HYPER, every normal key sends its base-layout key with `Ctrl+Opt+Cmd`. Physical Shift adds Shift: tap HYPER, then press `Shift+H/J/K/L` to send `Hyper+Shift+H/J/K/L`. Workspace moves use `Shift+Q/W/E/R/T/Y/U/I/O`, and fullscreen uses `Shift+F`. The layer also reaches Rex's OpenCode shortcuts, such as `X` for the leader, `P` for commands, and `O` for recent sessions. After `X`, toggle HYPER off before the unmodified leader suffix, such as `M` for models.
+
+Toggle HYPER off before using Fn or Mod. Hold Fn first, then press the former Home/End thumb keys to send Home or End. Ordinary key presses carry the Hyper chord only while HYPER is active; modifier and layer-control keys retain their control roles.
 
 All three devices share `adv360-layouts.dtsi` and `adv360-transform.dtsi`. The right half adds its column offset locally. Keyboard lighting retains the halves' startup settings, but the Mod-layer lighting shortcuts are removed: the Kinesis lighting implementation assumes a central keyboard half and one peripheral. Use Prospector for layer and battery status.
 
@@ -61,10 +65,11 @@ To return to the original left-central arrangement, rebuild the two halves from 
 ## Hardware checks
 
 - Type from both halves through Prospector and check both connection/battery widgets.
-- Hold either WM thumb key and check that the display shows `WM`; release it and check that it returns to the previous layer.
-- Check window focus, Shift+direction moves, workspace switching, workspace moves, and fullscreen.
+- Tap either former Home/End thumb key and check that the display stays on `HYPER` after release and multiple shortcuts. Tap either thumb key again and check that it returns to the previous layer.
+- Check window focus with `H/J/K/L`, moves with `Shift+H/J/K/L`, workspace switching with `1` through `9`, workspace moves with `Shift+Q/W/E/R/T/Y/U/I/O`, and fullscreen with `Shift+F`.
+- In OpenCode through Rex, check `P` for commands, `O` for recent sessions, and `X`, HYPER off, then `M` for models. Confirm ordinary typing resumes with no stuck modifiers after toggling off.
 - Hold Cmd longer than 300 ms before a normal shortcut, including `Cmd+Shift+3/4/5`.
-- Check Fn+thumb Home/End, WM access with the keypad layer toggled on, and F18 in Hex.
+- Check Fn+thumb Home/End and F18 in Hex with HYPER off. Check that toggling HYPER on and off from the keypad layer returns to the keypad layer.
 
 ## Syncing upstream
 
