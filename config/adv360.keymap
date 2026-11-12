@@ -78,7 +78,7 @@
       bindings = <
         &kp HYPER(EQUAL) &kp HYPER(N1) &kp HYPER(N2) &kp HYPER(N3) &kp HYPER(N4) &kp HYPER(N5) &kp HYPER(F18)                                      &trans &kp HYPER(N6) &kp HYPER(N7) &kp HYPER(N8) &kp HYPER(N9) &kp HYPER(N0) &kp HYPER(MINUS)
         &kp HYPER(TAB)   &kp HYPER(Q)  &kp HYPER(W)  &kp HYPER(E)  &kp HYPER(R)  &kp HYPER(T)  &none                                               &kp HYPER(LBKT) &kp HYPER(Y) &kp HYPER(U) &kp HYPER(I) &kp HYPER(O) &kp HYPER(P) &kp HYPER(BSLH)
-        &kp HYPER(ESC)   &kp HYPER(A)  &kp HYPER(S)  &kp HYPER(D)  &kp HYPER(F)  &kp HYPER(G)  &none       &trans &trans &trans &trans             &kp HYPER(RBKT) &kp HYPER(H) &kp HYPER(J) &kp HYPER(K) &kp HYPER(L) &kp HYPER(SEMI) &kp HYPER(SQT)
+        &to 0            &kp HYPER(A)  &kp HYPER(S)  &kp HYPER(D)  &kp HYPER(F)  &kp HYPER(G)  &none       &trans &trans &trans &trans             &kp HYPER(RBKT) &kp HYPER(H) &kp HYPER(J) &kp HYPER(K) &kp HYPER(L) &kp HYPER(SEMI) &kp HYPER(SQT)
         &trans           &kp HYPER(Z)  &kp HYPER(X)  &kp HYPER(C)  &kp HYPER(V)  &kp HYPER(B)                        &trans &trans                      &kp HYPER(N) &kp HYPER(M) &kp HYPER(COMMA) &kp HYPER(DOT) &kp HYPER(FSLH) &trans
         &trans           &kp HYPER(GRAVE) &none      &kp HYPER(LEFT) &kp HYPER(RIGHT)          &kp HYPER(BSPC) &kp HYPER(DEL) &tog HYPER_LAYER &tog HYPER_LAYER &kp HYPER(ENTER) &kp HYPER(SPACE) &kp HYPER(DOWN) &kp HYPER(UP) &none &none &trans
       >;

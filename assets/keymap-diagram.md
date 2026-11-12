@@ -27,7 +27,7 @@ LEFT HALF                                                              RIGHT HAL
                                      `------+------+------'    `------+------+------'
 ```
 
-Thumbs: both Cmd keys send ordinary Command immediately. Tap either former Home/End key to toggle HYPER on; tap either again to return to the previous layer. With HYPER off, hold Fn before pressing those thumb keys to send Home or End. Ctrl and Alt are on the upper pair for occasional use.
+Thumbs: both Cmd keys send ordinary Command immediately. Tap either former Home/End key to toggle HYPER on; tap either again to return to the previous layer. Esc from HYPER switches directly to Base. With HYPER off, hold Fn before pressing those thumb keys to send Home or End. Ctrl and Alt are on the upper pair for occasional use.
 
 ## Layer 1: Keypad (toggle)
 
@@ -103,9 +103,9 @@ LEFT HALF                                                              RIGHT HAL
 
 ## Layer 4: HYPER (toggle via either former Home/End thumb key)
 
-Tap either HYPER thumb key to activate the layer. It stays on after release and across shortcuts; tap either again to turn it off. Prospector shows `HYPER` while the layer is active.
+Tap either HYPER thumb key to activate the layer. It stays on after release and across shortcuts; tap either again to return to the previous layer. Esc switches directly to Base, clearing other active layers, without sending Escape to the Mac. Another press sends ordinary Escape. Prospector shows `HYPER` while the layer is active.
 
-Every normal key sends its base-layout key with `Ctrl+Opt+Cmd`, including letters, numbers, punctuation, arrows, Tab, Escape, F18, Backspace, Delete, Enter, and Space. Physical Shift adds Shift. Modifier and layer-control keys retain their control roles, and unused positions remain unassigned.
+Every normal key except Esc sends its base-layout key with `Ctrl+Opt+Cmd`, including letters, numbers, punctuation, arrows, Tab, F18, Backspace, Delete, Enter, and Space. Physical Shift adds Shift. Modifier and layer-control keys retain their control roles, and unused positions remain unassigned.
 
 ### OmniWM
 
@@ -136,15 +136,15 @@ Rex translates these Hyper chords into OpenCode's configured terminal shortcuts 
 | `R` / `D` / `F`        | Rename / delete / pin a session in the session list |
 | `M`                    | Create a worktree in the move-session dialog        |
 
-For leader sequences, press `X`, toggle HYPER off, then press the ordinary suffix. For example, `X`, HYPER off, `M` opens the model picker. The keyboard does not detect the focused app; the layer sends the same chords everywhere. See `rex/init.lua` and `opencode/config/cli.json.tera` in the dotfiles repo for the receiving bindings.
+For leader sequences, press `X`, exit HYPER with Esc or a thumb key, then press the ordinary suffix. For example, `X`, Esc, `M` opens the model picker. That first Esc only changes the keyboard layer and does not cancel OpenCode's leader. Test these shortcuts at the normal prompt, where no pending question dialog is taking keyboard focus. The keyboard does not detect the focused app; the layer sends the same chords everywhere. See `rex/init.lua` and `opencode/config/cli.json.tera` in the dotfiles repo for the receiving bindings.
 
 ## Custom Behaviors
 
-| Name         | Trigger                         | Action                                                 |
-| ------------ | ------------------------------- | ------------------------------------------------------ |
-| Homerow Mods | hold-tap (200ms, tap-preferred) | Hold for modifier, tap for key                         |
-| HYPER layer  | Tap either former Home/End key  | Toggle Hyper chords for normal keys until tapped again |
-| Version      | `Mod+V` (layer 3)               | Types `YYYYMMDD-XXXX-YYYYYY` build info                |
+| Name         | Trigger                         | Action                                             |
+| ------------ | ------------------------------- | -------------------------------------------------- |
+| Homerow Mods | hold-tap (200ms, tap-preferred) | Hold for modifier, tap for key                     |
+| HYPER layer  | Tap either former Home/End key  | Toggle Hyper chords; Esc switches directly to Base |
+| Version      | `Mod+V` (layer 3)               | Types `YYYYMMDD-XXXX-YYYYYY` build info            |
 
 ## Custom Macros (available in keymap)
 
