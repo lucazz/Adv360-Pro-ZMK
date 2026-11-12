@@ -1,14 +1,18 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/rgb.h>
-#include <dt-bindings/zmk/stp.h>
-#include <dt-bindings/zmk/backlight.h>
 #include <dt-bindings/zmk/pointing.h>
 
-// OmniWM's hyperKeyModifiers. LGUI as the base keycode keeps Ctrl and Alt held as explicit mods.
-// Reached by holding a Cmd thumb key alone past the cmd_hyper tapping term.
-#define HYPER LC(LA(LGUI))
+// Match OmniWM's hyperKeyModifiers, leaving Shift available for move variants.
+#define HYPER(key) LC(LA(LG(key)))
+#define WM 4
+
+#if defined(CONFIG_SHIELD_ADV360_DONGLE)
+// Kinesis lighting behaviors require hardware that is only on the keyboard halves.
+&rgb_ug { status = "disabled"; };
+&stp { status = "disabled"; };
+&bl { status = "disabled"; };
+#endif
 
 / {
     behaviors {
@@ -24,17 +28,6 @@
           flavor = "tap-preferred";
           bindings = <&kp>, <&kp>;
       };
-
-      // Cmd when chorded with another key or tapped; Hyper when held alone past the term.
-      ch: cmd_hyper {
-          compatible = "zmk,behavior-hold-tap";
-          label = "CMD_HYPER";
-          #binding-cells = <2>;
-          tapping-term-ms = <300>;
-          quick_tap_ms = <175>;
-          flavor = "tap-preferred";
-          bindings = <&kp>, <&kp>;
-      };
     };
 
   keymap {
@@ -46,8 +39,8 @@
         &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &kp F18                                                          &mo 3    &kp N6 &kp N7   &kp N8    &kp N9   &kp N0   &kp MINUS
         &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &kp LBKT &kp Y  &kp U    &kp I     &kp O    &kp P    &kp BSLH
         &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LALT  &kp LCTRL &kp RCTRL &kp RALT           &kp RBKT &kp H  &kp J    &kp K     &kp L    &kp SEMI &kp SQT
-        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &ch HYPER LGUI &ch HYPER RGUI                    &kp N  &kp M    &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-        &mo 2     &kp GRAVE &none    &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp HOME  &kp END   &kp ENTER &kp SPACE                &kp DOWN &kp UP    &none    &none    &mo 2
+        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp LGUI &kp RGUI                              &kp N  &kp M    &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+        &mo 2     &kp GRAVE &none    &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &mo WM   &mo WM    &kp ENTER &kp SPACE                &kp DOWN &kp UP    &none    &none    &mo 2
       >;
     };
     keypad {
@@ -56,8 +49,8 @@
         &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &trans                                                           &mo 3 &kp N6 &kp KP_NUM &kp KP_EQUAL &kp KP_DIVIDE &kp KP_MULTIPLY &kp MINUS
         &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp KP_N7  &kp KP_N8    &kp KP_N9     &kp KP_MINUS    &kp BSLH
         &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp KP_N4  &kp KP_N5    &kp KP_N6     &kp KP_PLUS     &kp SQT
-        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp KP_N0              &kp UP     &kp DOWN     &kp KP_DOT    &kp RBKT        &mo 2
+        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &trans   &trans                              &kp N  &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
+        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &trans   &trans    &kp ENTER &kp KP_N0              &kp UP     &kp DOWN     &kp KP_DOT    &kp RBKT        &mo 2
       >;
     };
     fn {
@@ -67,7 +60,7 @@
         &trans &trans &trans &trans &trans &trans  &none                                           &none &trans &trans &trans &trans  &trans  &trans
         &trans &trans &trans &trans &trans &trans  &none        &trans &trans &trans &trans        &none &trans &trans &trans &trans  &trans  &trans
         &trans &trans &trans &trans &trans &trans                      &trans &trans                     &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans              &trans &trans &trans  &trans  &trans
+        &trans &trans &trans &trans &trans               &trans &trans &kp HOME &kp END &trans &trans          &trans &trans &trans  &trans  &trans
       >;
     };
     mod {
@@ -75,14 +68,20 @@
       bindings = <
         &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none                                                                     &trans                 &none        &none        &none        &none &none &none
         &none &none        &none        &none        &none        &none        &bootloader                                                               &bootloader            &none        &none        &none        &none &none &none
-        &none          &none        &none        &none        &none        &none        &none                   &none &none &bt BT_CLR &none                      &stp STP_BAT &none        &none        &none        &none &none &none
+        &none          &none        &none        &none        &none        &none        &none                   &none &none &bt BT_CLR &none                      &none        &none        &none        &none        &none &none &none
         &none &none        &none        &none        &macro_ver   &none                                      &none &none                                                        &none        &none        &none        &none &none &none
-        &none &none        &none        &none        &none                                       &none &none &none &none      &bl BL_TOG &rgb_ug RGB_TOG                                     &bl BL_INC   &bl BL_DEC   &none &none &none
+        &none &none        &none        &none        &none                                       &none &none &none &none      &none      &none                                              &none        &none        &none &none &none
       >;
     };
-    extra1 { 
-      display-name = "Red";    
-      status = "reserved";
+    wm {
+      display-name = "WM";
+      bindings = <
+        &kp HYPER(EQUAL) &kp HYPER(N1)    &kp HYPER(N2)    &kp HYPER(N3)    &kp HYPER(N4)    &kp HYPER(N5)    &trans                                           &trans &kp HYPER(N6)    &kp HYPER(N7)    &kp HYPER(N8)    &kp HYPER(N9)    &none &kp HYPER(MINUS)
+        &none            &kp HYPER(LS(Q)) &kp HYPER(LS(W)) &kp HYPER(LS(E)) &kp HYPER(LS(R)) &kp HYPER(LS(T)) &none                                            &none  &kp HYPER(LS(Y)) &kp HYPER(LS(U)) &kp HYPER(LS(I)) &kp HYPER(LS(O)) &none &none
+        &none            &none            &none            &none            &kp HYPER(LS(F)) &none            &none        &trans &trans &trans &trans        &none  &kp HYPER(H)     &kp HYPER(J)     &kp HYPER(K)     &kp HYPER(L)     &none &none
+        &trans           &none            &none            &none            &none            &none                                     &trans &trans                            &none            &none            &kp HYPER(COMMA) &none            &kp HYPER(FSLH) &trans
+        &trans           &none            &none            &none            &none                                &none &none &trans &trans &none &none                         &none            &none            &none            &none            &trans
+      >;
     };
 
     extra2 { 

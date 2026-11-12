@@ -4,21 +4,32 @@ set -eu
 
 PWD=$(pwd)
 TIMESTAMP="${TIMESTAMP:-$(date -u +"%Y%m%d%H%M")}"
-COMMIT="${COMMIT:-$(echo xxxxxx)}"
+COMMIT="${COMMIT:-xxxxxx}"
 
-# West Build (left)
-west build -s zmk/app -p -d build/left -b adv360_left -- -DZMK_CONFIG="${PWD}/config"
-# Adv360 Left Kconfig file
-grep -vE '(^#|^$)' build/left/zephyr/.config
-# Rename zmk.uf2
-cp build/left/zephyr/zmk.uf2 "./firmware/${TIMESTAMP}-${COMMIT}-left-clique.uf2"
+for target in ${BUILD_TARGETS:-left right dongle}; do
+	args=()
+	suffix="${target}-prospector"
+	case "$target" in
+	left | right)
+		board="adv360_${target}"
+		;;
+	dongle)
+		board=seeeduino_xiao_ble
+		args=(-DSHIELD="adv360_dongle prospector_adapter")
+		;;
+	reset-dongle)
+		board=seeeduino_xiao_ble
+		args=(-DSHIELD=settings_reset)
+		suffix=dongle-reset
+		;;
+	*)
+		echo "Unknown build target: $target" >&2
+		exit 1
+		;;
+	esac
 
-# Build right side if selected
-if [ "${BUILD_RIGHT}" = true ]; then
-	# West Build (right)
-	west build -s zmk/app -p -d build/right -b adv360_right -- -DZMK_CONFIG="${PWD}/config"
-	# Adv360 Right Kconfig file
-	grep -vE '(^#|^$)' build/right/zephyr/.config
-	# Rename zmk.uf2
-	cp build/right/zephyr/zmk.uf2 "./firmware/${TIMESTAMP}-${COMMIT}-right-clique.uf2"
-fi
+	west build -s zmk/app -p -d "build/${target}" -b "$board" -- \
+		-DZMK_CONFIG="${PWD}/config" "${args[@]}"
+	grep -vE '(^#|^$)' "build/${target}/zephyr/.config"
+	cp "build/${target}/zephyr/zmk.uf2" "./firmware/${TIMESTAMP}-${COMMIT}-${suffix}.uf2"
+done

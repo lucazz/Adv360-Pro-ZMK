@@ -1,6 +1,6 @@
 # Advantage 360 Pro Keymap Diagram
 
-Custom keymap with homerow mods (hold-tap, 200ms, tap-preferred) and bracket-pair macros.
+Custom keymap with plain Command thumb keys and a momentary OmniWM layer.
 
 ## Layer 0: Default (QWERTY)
 
@@ -20,18 +20,18 @@ LEFT HALF                                                              RIGHT HAL
                                             ,------+------.    ,------+------.
                                             | Alt  | Ctrl |    | RCtrl| RAlt |
                                      ,------+------+------|    |------+------+------.
-                                     |      |      | Cmd/ |    | Cmd/ |      |      |
-                                     | Bksp | Del  | Hyper|    | Hyper| Enter| Space|
+                                     |      |      | Cmd  |    | Cmd  |      |      |
+                                     | Bksp | Del  |      |    |      | Enter| Space|
                                      |      |      |------|    |------|      |      |
-                                     |      |      | Home |    | End  |      |      |
+                                     |      |      | WM   |    | WM   |      |      |
                                      `------+------+------'    `------+------+------'
 ```
 
-Thumbs: the small key the thumb rests on is Cmd when tapped or chorded with another key, and Hyper (`Ctrl+Opt+Cmd`) when held alone for 300 ms. Hyper drives OmniWM; see `omniwm/README.md` in the dotfiles repo. A slow Cmd chord lands as Hyper, which matters for chords OmniWM also binds. Ctrl and Alt are on the upper pair for occasional use.
+Thumbs: both Cmd keys send ordinary Command immediately. Hold either former Home/End key to activate the WM layer, then release it to return to the previous layer. Hold Fn before pressing those thumb keys to send Home or End. Ctrl and Alt are on the upper pair for occasional use.
 
 ## Layer 1: Keypad (toggle)
 
-Right side converts to numpad layout. Left side unchanged.
+Right side converts to numpad layout. The Cmd and WM thumb keys retain their base-layer bindings.
 
 ```
 LEFT HALF                                                              RIGHT HALF
@@ -49,15 +49,15 @@ LEFT HALF                                                              RIGHT HAL
                                           ,-----------.    ,-----------.
                                           | Ctrl | Alt |    | GUI  | RCtrl|
                                      ,----|------|------|    |------+------+----.
-                                     |    |      | Home |    | PgUp |      |     |
+                                     |    |      | Cmd  |    | Cmd  |      |     |
                                      | Bksp| Del  |------|    |------| Enter| KP 0|
-                                     |    |      | End  |    | PgDn |      |     |
+                                     |    |      | WM   |    | WM   |      |     |
                                      `-----------+------'    `------+-----------'
 ```
 
 ## Layer 2: Function Keys (momentary via bottom corners)
 
-Top row becomes F1-F12. Everything else transparent to layer below.
+Top row becomes F1-F12. The WM thumb keys send Home (left) and End (right). Other bindings pass through to the layer below, except the unused inner keys.
 
 ```
 LEFT HALF                                                              RIGHT HALF
@@ -72,12 +72,12 @@ LEFT HALF                                                              RIGHT HAL
 `--------+------+------+------+------+------'                                `------+------+------+------+------+--------'
  |       |      |      |      |      |                                              |      |      |      |      |       |
  `-------+------+------+------+------'                                               `------+------+------+------+-------'
-                          (all other keys transparent to active layer below)
+                          (thumb WM keys: Home on left, End on right)
 ```
 
 ## Layer 3: Mod / System (momentary via top-right key)
 
-Bluetooth profiles, bootloader, battery status, RGB/backlight controls, version macro.
+Bluetooth profiles, bootloader, and version macro. Prospector displays battery and layer status; keyboard lighting shortcuts are unassigned.
 
 ```
 LEFT HALF                                                              RIGHT HALF
@@ -86,28 +86,45 @@ LEFT HALF                                                              RIGHT HAL
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
 |        |      |      |      |      |      | BOOT |                  | BOOT |      |      |      |      |      |        |
 |--------+------+------+------+------+------+------|                  |------+------+------+------+------+------+--------|
-|        |      |      |      |      |      |      |      |BT CLR|    |      |      | BAT  |      |      |      |        |
+|        |      |      |      |      |      |      |      |BT CLR|    |      |      |      |      |      |      |        |
 |--------+------+------+------+------+------+------'                  `------+------+------+------+------+------+--------|
 |        |      |      |      | VER  |      |                                |      |      |      |      |      |        |
 `--------+------+------+------+------+------'                                `------+------+------+------+------+--------'
- |       |      |      |      |      |                                              |BL UP |BL DN |      |      |       |
+ |       |      |      |      |      |                                              |      |      |      |      |       |
  `-------+------+------+------+------'                                               `------+------+------+------+-------'
                                           ,-----------.    ,-----------.
                                           |      |      |    |      |      |
                                      ,----|------|------|    |------+------+----.
                                      |    |      |      |    |      |      |     |
-                                     |    |      |------|    |------| BL   | RGB |
-                                     |    |      |      |    |      | TOG  | TOG |
+                                     |    |      |------|    |------|      |     |
+                                     |    |      |      |    |      |      |     |
                                      `-----------+------'    `------+-----------'
 ```
 
+## Layer 4: Window management (momentary via either WM thumb key)
+
+The layer sends OmniWM's Hyper shortcuts (`Ctrl+Opt+Cmd`). Hold either WM key to activate it immediately. Its display name is `WM`.
+
+| Keys while holding WM | Action                                        |
+| --------------------- | --------------------------------------------- |
+| `H/J/K/L`             | Focus the window left/down/up/right           |
+| `Shift+H/J/K/L`       | Move the focused tile left/down/up/right      |
+| `1` through `9`       | Switch to workspace 1 through 9               |
+| `Q/W/E/R/T/Y/U/I/O`   | Move the window to workspace 1 through 9      |
+| `-` / `=`             | Shrink / grow the focused window              |
+| `F`                   | Toggle OmniWM fullscreen                      |
+| `/`                   | Toggle the Dwindle split direction            |
+| `,`                   | Toggle the workspace between Dwindle and Niri |
+
+The workspace-move keys and `F` include Shift in their output. Physical Shift adds the move variant to `H/J/K/L`. Modifiers, layer keys, and F18 pass through; other unmapped keys do nothing. See `omniwm/settings.toml` in the dotfiles repo for the receiving shortcuts.
+
 ## Custom Behaviors
 
-| Name         | Trigger                         | Action                                            |
-| ------------ | ------------------------------- | ------------------------------------------------- |
-| Homerow Mods | hold-tap (200ms, tap-preferred) | Hold for modifier, tap for key                    |
-| Cmd/Hyper    | hold-tap (300ms, tap-preferred) | Cmd when tapped or chorded, Hyper when held alone |
-| Version      | `Mod+V` (layer 3)               | Types `YYYYMMDD-XXXX-YYYYYY` build info           |
+| Name         | Trigger                         | Action                                          |
+| ------------ | ------------------------------- | ----------------------------------------------- |
+| Homerow Mods | hold-tap (200ms, tap-preferred) | Hold for modifier, tap for key                  |
+| WM layer     | Hold either WM thumb key        | Send OmniWM shortcuts until the key is released |
+| Version      | `Mod+V` (layer 3)               | Types `YYYYMMDD-XXXX-YYYYYY` build info         |
 
 ## Custom Macros (available in keymap)
 
@@ -129,10 +146,6 @@ LEFT HALF                                                              RIGHT HAL
 | `BOOT`        | Enter bootloader mode          |
 | `BT n`        | Select Bluetooth profile n     |
 | `BT CLR`      | Clear Bluetooth pairing        |
-| `BL TOG`      | Toggle backlight               |
-| `BL UP/DN`    | Backlight brightness           |
-| `RGB TOG`     | Toggle RGB underglow           |
-| `BAT`         | Report battery status          |
 | `VER`         | Version macro                  |
 | (blank)       | No binding (none)              |
 | (empty in L2) | Transparent to layer below     |
