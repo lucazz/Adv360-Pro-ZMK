@@ -83,20 +83,5 @@
         &trans           &kp HYPER(GRAVE) &none      &kp HYPER(LEFT) &kp HYPER(RIGHT)          &kp HYPER(BSPC) &kp HYPER(DEL) &tog HYPER_LAYER &tog HYPER_LAYER &kp HYPER(ENTER) &kp HYPER(SPACE) &kp HYPER(DOWN) &kp HYPER(UP) &none &none &trans
       >;
     };
-
-    extra2 { 
-      display-name = "Purple";    
-      status = "reserved";
-    };
-
-    extra3 { 
-      display-name = "Cyan";    
-      status = "reserved";
-    };
-
-    extra4 { 
-      display-name = "Yellow";    
-      status = "reserved";
-    };
   };
 };
